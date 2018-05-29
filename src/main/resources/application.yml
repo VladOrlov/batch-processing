@@ -1,0 +1,27 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  data:
+    mongodb:
+      host: ${MONGODB_HOST:localhost}
+      port: ${MONGOBD_PORT:27017}
+      database: ${MONGODB_NAME:corporate_robotics}
+
+jobs:
+  engine:
+    path: "in/engine_data.txt"
+    schedule: "1 * * * * ?"
+    mapping-options:
+      data-source:
+        core_temp: coreTemperatures
+      fields:
+        id: id
+        sensor_zone: core_temp.zone
+        sensor_value: core_temp.value
+        sensor_ratio: core_temp.ratio
+
+
+logging:
+  file: application.log
+
